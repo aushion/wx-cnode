@@ -7,13 +7,15 @@ export default class Tab extends Component{
         super(...arguments)
         this.state = {
           tabs: this.props.tabs,
-          onTabChange: this.props.onTabChange
+          onTabChange: this.props.onTabChange,
         }
 
     }
     componentWillMount () { }
 
-    componentDidMount () { }
+    componentDidMount () { 
+        
+    }
 
     componentWillUnmount () { }
 
@@ -21,22 +23,22 @@ export default class Tab extends Component{
 
     componentDidHide () { }
 
-    handleClick = (id,index) => {
+    handleClick = (i) => {
       let tabs = this.state.tabs;
-      tabs.map((item) => {
+      tabs.map((item,index) => {
         item.active = false;       
-        if(item.id === id) item.active = true;
+        if(index === i) item.active = true;
       })
       this.setState({
         tabs: tabs
       })
-      this.state.onTabChange(id,index)
+      this.state.onTabChange(i)
     }
   render (){
     return (
         <View className='flex-wrp' style='flex-direction:row;'>
           {this.state.tabs.map((item,index) => {
-            return <View key={item.id} className={item.active?'flex-item active':'flex-item'} onClick={this.handleClick.bind(this,item.id,index)}>{item.title}</View>
+            return <View key={item.id} className={item.active?'flex-item active':'flex-item'} onClick={this.handleClick.bind(this,index)}>{item.title}</View>
           })}
         </View>
 

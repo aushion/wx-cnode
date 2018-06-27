@@ -1,8 +1,8 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Swiper, SwiperItem } from '@tarojs/components'
-import List from '../../components/List'
-import Tab from '../../components/Tab'
+import { View } from '@tarojs/components'
 import _Const from '../../static/_Const'
+import WxParse from '../../components/wxParse/wxParse'
+import '../../static/wxParse.css'
 import './index.styl'
 
 export default class Index extends Component {
@@ -31,12 +31,14 @@ export default class Index extends Component {
   getTopicsDeail = (id) => {
     Taro.request({
       url: _Const.serverApi+'/topic/'+id,   
+      data: {
+        mdrender: false
+      },
       header: {
         'content-type': 'application/json'
       },
     })
     .then(res => {
-      console.log(res.data)
       this.setState({
         data: res.data.data,
         loading: false
@@ -55,11 +57,13 @@ export default class Index extends Component {
   
   render () {
     const { data } = this.state
+    const that = this;
+    const content = data?data.content:'<div>无<div>'
     return (
       <View className='index'>
-      
-        {!this.state.loading?<View className="markdown-body">
-          {data.content}
+        {this.state.data?<View className="markdown-body">
+        {/* {data.content} */}
+        {WxParse.wxParse('article','md',content,that,5)}
         </View>:null}
       </View>
     )

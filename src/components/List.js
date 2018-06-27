@@ -38,6 +38,10 @@ export default class List extends Component{
         })
         .then(res => {
             dataList = dataList.concat(res.data.data)
+            dataList = dataList.map((item) => {
+                return {id: item.id,author: item.author,tab: item.tab,title: item.title}
+            })
+            console.log(dataList)
             this.setState({
                 dataList: dataList,
             })

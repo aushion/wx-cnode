@@ -25,12 +25,25 @@ export default class Index extends Component {
   
  
 
-  handleTab = (id,index) => {
+  handleTab = (index) => {
     this.setState({
       current: index
     })
 
   }
+
+  handleChange = (e) => {
+    console.log(e.currentTarget.current)
+    let {tabs} = this.state;
+    tabs.map((item,index) => {
+      item.active = false;
+      if(index === e.currentTarget.current) item.active = true
+    })
+    this.setState({
+      tabs: tabs,
+      current: e.currentTarget.current
+    })
+  } 
   render () {
     const { tabs,current } = this.state;
     return (
@@ -41,6 +54,7 @@ export default class Index extends Component {
           <Swiper 
             className="swiper-wrap"
             current={current}
+            onChange={this.handleChange}
           >
             <SwiperItem className="swiper-item">
               <List tab='all' />            
