@@ -7,7 +7,7 @@ import './index.styl'
 
 export default class Index extends Component {
   config = {
-    navigationBarTitleText: '首页'
+    navigationBarTitleText: 'Cnode'
   }
   constructor () {
     super(...arguments)
@@ -33,7 +33,6 @@ export default class Index extends Component {
   }
 
   handleChange = (e) => {
-    console.log(e.currentTarget.current)
     let {tabs} = this.state;
     tabs.map((item,index) => {
       item.active = false;

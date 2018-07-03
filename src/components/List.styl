@@ -1,16 +1,44 @@
 .scrollview
-  font-size: 28px
+  font-size: 32px
+  img
+    width: 100%
   .listwrap
     display: flex
-    align-items: center
-    padding: 20px    
+    //align-items: center
+    padding: 40px    
     border-bottom: 1px solid #eee 
-    .list
-      padding-left: 20px
-      line-height: 40px      
-    .avatar
+    flex-direction: column
+    .tag
       width: 60px
-      height: 60px
-      border-radius: 50%
-      overflow: hidden
+      text-align: center
+      padding: 4px 6px
+      border-radius: 6px
+      font-size: 24px
+      background: #eee
+    .list
+      padding: 30px 0
+      line-height: 40px 
+      flex: auto
+    .info
+      font-size: 24px
+      display: flex
+      align-items: center
+      .author
+        flex: 0 1 auto
+        display: flex
+        align-items: center
+        .avatar
+          width: 40px
+          height: 40px
+          border-radius: 50%
+          overflow: hidden
+          margin-right: 20px
+        .name
+          font-size: 24px  
+          line-height: 40px
+      .create_at
+        flex: auto
+        text-align: right
+
+    
 

@@ -5,5 +5,10 @@ export default {
     {id: 'ask',title: '问答',active: false},
     {id: 'job',title: '招聘',active: false}
   ],
+  tab: {
+    'share':'分享',
+    'ask':'问答',
+    'job':'招聘'
+  },
   serverApi: 'https://cnodejs.org/api/v1'
 }
