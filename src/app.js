@@ -1,6 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
-import Index from './pages/index'
 import moment from 'moment'
+import Index from './pages/index'
 import './app.styl'
 
 moment.locale('zh-cn')

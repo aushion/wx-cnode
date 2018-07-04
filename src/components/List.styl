@@ -8,13 +8,24 @@
     padding: 40px    
     border-bottom: 1px solid #eee 
     flex-direction: column
-    .tag
-      width: 60px
-      text-align: center
-      padding: 4px 6px
-      border-radius: 6px
+    .top
+      display: flex
       font-size: 24px
-      background: #eee
+      align-items: center
+      .tag
+        width: 60px
+        text-align: center
+        padding: 4px 6px
+        border-radius: 6px
+        background: #eee
+        &.good
+          background-color: #80bd01 
+          color: #fff
+      .count
+        flex: auto
+        text-align: right  
+        .reply_count
+          color: #80bd01 
     .list
       padding: 30px 0
       line-height: 40px 

@@ -1,7 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View,RichText,Image,Text} from '@tarojs/components'
-import _Const from '../../static/_Const'
 import moment from 'moment'
+import _Const from '../../static/_Const'
 import './detail.styl'
 
 
@@ -47,6 +47,8 @@ export default class Index extends Component {
       this.setState({
         data: data,
         loading: false,
+        visit_count: data.visit_count,
+        create_at: moment(data.create_at).fromNow(),
         content: content,
         replies: res.data.data.replies
       })
@@ -72,25 +74,31 @@ export default class Index extends Component {
 
   
   render () {
-    const { data,replies,content } = this.state
+    const { data,replies,content,create_at,visit_count } = this.state
     return (
       <View className='index'>
         {!this.state.loading?
         <View className="main">
 
           <View className="title">{data.title}</View>
-
+          <View className="tips">
+            <View>{create_at}  阅读{visit_count}  来自于{_Const.tab[data.tab]}</View>
+          </View>
           <View className="content">
+              <View className="landlord">
+                <Image src={data.author.avatar_url} className="avatar"></Image>
+                <Text className="name">{data.author.loginname}</Text>
+              </View>
               <RichText nodes={content}></RichText>  
             </View>
           
           <View className="comments">
-            <View className="tag">评论</View>
+            <View className="tag">{replies.length}回复</View>
             {replies.map((item,index) => {
             return (<View key={index} className="list">
                       <View className='author'>
                         <Image src={item.author.avatar_url} className='avatar' />
-                        <Text className='name'>{item.author.loginname}·{index+1}楼·{moment(item.create_at).locale('zh-cn').fromNow()}
+                        <Text className='name'>{item.author.loginname}·{index+1}楼·{moment(item.create_at).fromNow()}
                         
                         </Text>
                         </View>

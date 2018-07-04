@@ -54,6 +54,9 @@ export default class Index extends Component {
             className="swiper-wrap"
             current={current}
             onChange={this.handleChange}
+            duration={500}
+            circular='true'
+
           >
             <SwiperItem className="swiper-item">
               <List tab='all' />            

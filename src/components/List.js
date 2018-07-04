@@ -1,7 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
 import {View,ScrollView,Image,Text} from '@tarojs/components'
-import _Const from '../static/_Const'
 import moment from 'moment'
+import _Const from '../static/_Const'
 import  './List.styl'
 
 export default class List extends Component{
@@ -49,7 +49,8 @@ export default class List extends Component{
                     visit_count: item.visit_count,
                     reply_count: item.reply_count,
                     top:item.top,
-                    good:item.good
+                    good:item.good,
+                    last_reply_at:moment(item.last_reply_at).fromNow(),
                     
                 }
             })
@@ -83,20 +84,25 @@ export default class List extends Component{
           scrollY
           scrollWithAnimation
           scrollTop='0'
-          style='height: 800px;'
-          lowerThreshold='20'
-          upperThreshold='20'
+          style='height: 1100px;'
+          lowerThreshold='10'
+          upperThreshold='0'
           onScrolltoupper={this.onScrolltoupper}
           onScroll={this.onScroll}
           onScrolltolower={this.onScrolltolower}
         >
         {dataList.map(item => 
-            <View key={item.id} className="listwrap" onClick={this.handleClick.bind(this,item.id)}>        
-                <View className="tag">{(item.top)?'置顶':item.good?'精华':_Const.tab[item.tab]}</View>
+            <View key={item.id} className="listwrap" onClick={this.handleClick.bind(this,item.id)}>
+                <View className="top">
+                    <View className={(item.top || item.good)?'tag good':'tag'}>{(item.top)?'置顶':item.good?'精华':_Const.tab[item.tab]}</View>
+                    <View className="count"><Text className='reply_count'>{item.reply_count}/</Text>{item.visit_count} · <Text>{item.last_reply_at}</Text></View>
+                    
+                </View>     
+               
                 <View className="list">
                     {item.title}            
                 </View>   
-                <View className="info">
+                <View className="info"> 
                     <View className="author">
                         <Image src={item.author.avatar_url} className='avatar'  lazy-load="{{true}}" /> 
                         <Text className="name">{item.author.loginname}</Text>   
