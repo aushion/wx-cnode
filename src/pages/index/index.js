@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Swiper, SwiperItem } from '@tarojs/components'
+import { View, Swiper, SwiperItem,Icon } from '@tarojs/components'
 import List from '../../components/List'
 import Tab from '../../components/Tab'
 import _Const from '../../static/_Const'
@@ -47,6 +47,7 @@ export default class Index extends Component {
     const { tabs,current } = this.state;
     return (
       <View className='index'>
+      
         <Tab tabs={tabs} onTabChange={this.handleTab} />
 
         <View className="content">
@@ -56,7 +57,6 @@ export default class Index extends Component {
             onChange={this.handleChange}
             duration={500}
             circular='true'
-
           >
             <SwiperItem className="swiper-item">
               <List tab='all' />            
@@ -76,6 +76,8 @@ export default class Index extends Component {
            
           </Swiper>
         </View>
+        {/* <Icon className="iconfont icon-edit4 post"></Icon> */}
+        
       </View>
     )
   }
