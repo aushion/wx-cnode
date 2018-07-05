@@ -4,6 +4,7 @@ import moment from 'moment'
 import _Const from '../static/_Const'
 import  './List.styl'
 
+
 export default class List extends Component{
     constructor (props) {
         super(props)
@@ -24,7 +25,6 @@ export default class List extends Component{
         this.getTopics(this.state.tab,this.state.page)
     }
     getTopics = (tab,page) => {
-        let {dataList} = this.state
         Taro.request({
         url: _Const.serverApi+'/topics',
         data: {
@@ -38,8 +38,9 @@ export default class List extends Component{
         },
         })
         .then(res => {
-            dataList = dataList.concat(res.data.data)
-            dataList = dataList.map((item) => {
+            let {dataList} = this.state            
+            let arr = res.data.data
+            arr = arr.map((item) => {
                 return {
                     id: item.id,
                     author: item.author,
@@ -54,6 +55,7 @@ export default class List extends Component{
                     
                 }
             })
+            dataList = dataList.concat(arr)
             this.setState({
                 dataList: dataList,
             })

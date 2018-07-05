@@ -4,14 +4,12 @@ import moment from 'moment'
 import _Const from '../../static/_Const'
 import './detail.styl'
 
-
 export default class Index extends Component {
   config = {
     navigationBarTitleText: 'Cnode'
   }
   constructor () {
     super(...arguments)
-   
     this.state = {
       data: null,
       loading: true,

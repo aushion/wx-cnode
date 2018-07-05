@@ -1,5 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Swiper, SwiperItem,Icon } from '@tarojs/components'
+import moment from 'moment'
+import 'moment/locale/zh-cn';
 import List from '../../components/List'
 import Tab from '../../components/Tab'
 import _Const from '../../static/_Const'
@@ -59,24 +61,24 @@ export default class Index extends Component {
             circular='true'
           >
             <SwiperItem className="swiper-item">
-              <List tab='all' />            
+              <List tab='all' />           
             </SwiperItem>
 
             <SwiperItem className="swiper-item">
-              <List tab='share' />            
+              <List tab='share' />           
             </SwiperItem>
 
             <SwiperItem className="swiper-item">
-              <List tab='ask' />            
+              <List tab='ask' />           
             </SwiperItem>
 
             <SwiperItem className="swiper-item">
-              <List tab='job' />            
+              <List tab='job' />           
             </SwiperItem>
            
           </Swiper>
         </View>
-        {/* <Icon className="iconfont icon-edit4 post"></Icon> */}
+        <Icon className="iconfont icon-edit4 post"></Icon>
         
       </View>
     )

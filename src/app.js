@@ -1,9 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
-import moment from 'moment'
 import Index from './pages/index'
 import './app.styl'
 
-moment.locale('zh-cn')
 class App extends Component {
   config = {
     pages: [
@@ -18,13 +16,6 @@ class App extends Component {
     }
   }
 
-  componentDidMount () {}
-
-  componentDidShow () {}
-
-  componentDidHide () {}
-
-  componentCatchError () {}
 
   render () {
     return (
