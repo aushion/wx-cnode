@@ -1,6 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Swiper, SwiperItem,Icon } from '@tarojs/components'
-import moment from 'moment'
+// import moment from 'moment'
 import 'moment/locale/zh-cn';
 import List from '../../components/List'
 import Tab from '../../components/Tab'
@@ -49,7 +49,10 @@ export default class Index extends Component {
     const { tabs,current } = this.state;
     return (
       <View className='index'>
-      
+        {/* <View className='slideout'>
+          <Icon className="iconfont icon-zhankai slide"> 浏览</Icon>
+          
+        </View> */}
         <Tab tabs={tabs} onTabChange={this.handleTab} />
 
         <View className="content">

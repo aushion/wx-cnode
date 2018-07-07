@@ -13,7 +13,18 @@ class App extends Component {
       navigationBarBackgroundColor: '#474546',
       navigationBarTitleText: 'wechat',
       navigationBarTextStyle: 'light'
-    }
+    },
+    tabBar: {
+      list: [{
+        pagePath: "pages/index/index",
+        text: "首页"
+      }, {
+        pagePath: "pages/detail/detail",
+        text: "详情"
+      },
+      
+    ]
+    },
   }
 
 
