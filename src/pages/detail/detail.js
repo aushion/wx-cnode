@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View,RichText,Image,Text} from '@tarojs/components'
+import { View,RichText,Image,Text,Icon} from '@tarojs/components'
 import moment from 'moment'
 import _Const from '../../static/_Const'
 import './detail.styl'
@@ -110,6 +110,7 @@ export default class Index extends Component {
           </View>
           
         </View>:null}
+        <Icon className="iconfont icon-huifu1 response"></Icon>
       </View>
     )
   }

@@ -6,7 +6,9 @@ class App extends Component {
   config = {
     pages: [
       'pages/index/index',
-      'pages/detail/detail'
+      'pages/detail/detail',
+      'pages/message/index',
+      'pages/user/index'
     ],
     window: {
       backgroundTextStyle: 'light',
@@ -15,13 +17,27 @@ class App extends Component {
       navigationBarTextStyle: 'light'
     },
     tabBar: {
-      list: [{
+      color: '#474546',
+      selectedColor: '#80bd01',
+      list: [
+        {
         pagePath: "pages/index/index",
-        text: "首页"
-      }, {
-        pagePath: "pages/detail/detail",
-        text: "详情"
+        text: "社区",
+        iconPath: "static/img/forum.png",
+        selectedIconPath: "static/img/forum_active.png"
+      }, 
+      {
+        pagePath: "pages/message/index",
+        text: "消息",
+        iconPath: "static/img/message.png",
+        selectedIconPath: "static/img/message_active.png"
       },
+      {
+        pagePath: "pages/user/index",
+        text: "用户",
+        iconPath: "static/img/user.png",
+        selectedIconPath: "static/img/user_active.png"
+      }
       
     ]
     },

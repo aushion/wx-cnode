@@ -45,6 +45,10 @@ export default class Index extends Component {
       current: e.currentTarget.current
     })
   } 
+
+  handleClick = () => {
+    console.log('i am click')
+  }
   render () {
     const { tabs,current } = this.state;
     return (
@@ -81,7 +85,7 @@ export default class Index extends Component {
            
           </Swiper>
         </View>
-        <Icon className="iconfont icon-edit4 post"></Icon>
+        <Icon className="iconfont icon-edit4 post" onClick={this.handleClick}></Icon>
         
       </View>
     )
