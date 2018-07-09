@@ -47,7 +47,24 @@ export default class Index extends Component {
   } 
 
   handleClick = () => {
-    console.log('i am click')
+    const userInfo = Taro.getStorageSync('userInfo');
+    if(userInfo.accessToken){
+      console.log('已经登录')
+      Taro.navigateTo({
+        url: '../post/index'
+      })
+    }else{
+      Taro.showModal({
+        title: '该操作需要登录，是否立即登录',
+        success: (confirm) => {
+          if(confirm){
+            Taro.navigateTo({
+              url: '../login/login'
+            })
+          }
+        }
+      })
+    }
   }
   render () {
     const { tabs,current } = this.state;

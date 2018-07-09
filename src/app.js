@@ -8,7 +8,9 @@ class App extends Component {
       'pages/index/index',
       'pages/detail/detail',
       'pages/message/index',
-      'pages/user/index'
+      'pages/user/index',
+      'pages/login/login',
+      'pages/post/index'
     ],
     window: {
       backgroundTextStyle: 'light',
@@ -34,7 +36,7 @@ class App extends Component {
       },
       {
         pagePath: "pages/user/index",
-        text: "用户",
+        text: "我的",
         iconPath: "static/img/user.png",
         selectedIconPath: "static/img/user_active.png"
       }
