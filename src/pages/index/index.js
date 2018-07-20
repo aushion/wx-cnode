@@ -88,6 +88,10 @@ export default class Index extends Component {
               <List tab='all' />           
             </SwiperItem>
 
+             <SwiperItem className="swiper-item">
+              <List tab='good' />           
+            </SwiperItem>
+
             <SwiperItem className="swiper-item">
               <List tab='share' />           
             </SwiperItem>

@@ -1,4 +1,6 @@
 .index
+  height: 100%
+  z-index: 1
   img
     width: 100%
   .response
@@ -29,6 +31,12 @@
       border-bottom: 1px solid #eee
       .tab
         flex: auto
+      .collection
+        display: inline-block
+        font-size: 50px;
+        text-align: right
+        &.green
+          color: #80bd01
     .content
       padding: 20px  
       .landlord
@@ -70,7 +78,48 @@
           padding-left: 50px;
           .markdown-text
             img
-              width: 100px   
+              width: 100px 
+  .modal
+    width: 100%
+    height: 100%
+    position: absolute
+    top: 0
+    background: rgba(0,0,0,0.5)
+    z-index: 999
+    &.hide
+      display: none
+  .response-wrapper
+    z-index: 1000
+    width: 100%
+    height: 0
+    transition: height 4s ease 0
+    position fixed
+    bottom: 0px
+    background: #fff
+  .test
+    z-index: 1000
+    width: 100%
+    height: 0
+    position: fixed
+    bottom: 0
+    background: #fff
+    height: 400px
+    .top
+      box-shadow: 0px 10px 10px #ccc
+      background: #fff
+      width: 100%
+      padding: 10px 0
+      .sent
+        font-size: 50px
+        float: right
+        margin-right: 30px
+        line-height: 40px
+        color: #80bd01
+    .content
+      border: 1px solid #eee
+      width: 100% 
+      height: 380px
+      padding: 4px
 
             
               
