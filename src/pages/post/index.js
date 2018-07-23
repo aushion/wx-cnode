@@ -99,7 +99,7 @@ export default class Index extends Component {
         </View>
 
 
-        <Button formType='submit'>发送</Button>
+        <Button formType='submit' type="primary" className="sendBtn">发送</Button>
     </Form>
     )
   }

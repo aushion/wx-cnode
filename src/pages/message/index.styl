@@ -1,6 +1,30 @@
 .message
+  font-size: 28px
   img 
     width: 100%
-  .has_read_messages
+  .has_read_messages,.hasnot_read_messages
     .wrapper
+      padding: 20px
+      border-bottom: 1px solid #eee
+      .replyer
+        display: flex
+        align-items: center
+        .avatar
+          width: 100px
+          height: 100px
+          border-radius: 50%
+          overflow hidden
+          flex: 0 1 100px
+        .name-wrapper
+          flex: auto
+          padding-left: 40px         
+        .time
+          flex: auto
+          text-align: right
+          padding-right: 40px
+      .content
+        padding: 20px
+      .topic
+        padding: 20px
+        background: #eee      
       

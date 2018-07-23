@@ -9,7 +9,7 @@ import './index.styl'
 
 export default class Index extends Component {
   config = {
-    navigationBarTitleText: 'Cnode'
+    navigationBarTitleText: '社区'
   }
   constructor () {
     super(...arguments)
