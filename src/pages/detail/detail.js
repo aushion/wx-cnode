@@ -68,10 +68,12 @@ export default class Index extends Component {
     })
    }
 
-  componentDidShow () { }
+  componentDidShow () {
+    this.hideModal()
+   }
 
   componentDidHide () {
-    
+    this.hideModal()
    }
   handleInput = (e) => {
     this.setState({

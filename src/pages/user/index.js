@@ -196,7 +196,7 @@ export default class Index extends Component {
         </View>:
         <View>
           <Icon className='iconfont icon-user avatar' onClick={this.handleClick}></Icon>
-          <View>点击头像登录</View>
+          <View style="color:#fff">点击头像登录</View>
         </View>
       }
         

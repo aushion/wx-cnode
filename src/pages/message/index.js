@@ -21,7 +21,28 @@ export default class Index extends Component {
    }
 
   componentDidMount () { 
-    if(!this.state.userInfo){
+    // const userInfo = Taro.getStorageSync('userInfo')
+    // if(!userInfo.accessToken){
+    //   Taro.showModal({
+    //     title: '该操作需要登录，是否立即登录',
+    //     success: (confirm) => {
+    //       if(confirm){
+    //         Taro.navigateTo({
+    //           url: '../login/login'
+    //         })
+    //       }
+    //       Taro.hideLoading()
+    //     }
+    //   })
+    // }else{
+    //   this.getMessages()     
+    // }
+  }
+
+  componentDidShow() {
+    const userInfo = Taro.getStorageSync('userInfo')
+    
+    if(!userInfo){
       Taro.showModal({
         title: '该操作需要登录，是否立即登录',
         success: (confirm) => {
@@ -30,19 +51,20 @@ export default class Index extends Component {
               url: '../login/login'
             })
           }
+          Taro.hideLoading()
         }
       })
-    }else{
-      this.getMessages()     
+    }else{   
+      this.getMessages()         
     }
   }
-
-  componentDidShow() {
-    
-  }
+  
   
   getMessages = () => {
-    const {userInfo} = this.state
+    const {userInfo} = this.state;
+    Taro.showLoading({
+      title: '加载中'
+    })
     Taro.request({
       url: _Const.serverApi+'/messages',
       method: 'GET',
@@ -51,12 +73,12 @@ export default class Index extends Component {
         //mdrender:false,
       },
     }).then(res => {
-      console.log(res.data.data)
       this.setState({
         has_read_messages: res.data.data.has_read_messages,
         hasnot_read_messages: res.data.data.hasnot_read_messages
 
       })
+      Taro.hideLoading()
     })
   }
  
