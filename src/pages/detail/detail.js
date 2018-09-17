@@ -1,18 +1,17 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View,RichText,Image,Text,Icon,Textarea} from '@tarojs/components'
 import moment from 'moment'
-import WxParse from '../../components/wxParse/wxParse'
+// import WxParse from '../../components/wxParse/wxParse'
 import _Const from '../../static/_Const'
 import './detail.styl'
-import '../../components/wxParse/wxParse.wxss'
 
 export default class Index extends Component {
   config = {
     navigationBarTitleText: '详情',
     // 定义需要引入的第三方组件
-    // usingComponents: {
-    //   'wxParse': '../../wxParse/wxParse.js' // 书写第三方组件的相对路径
-    // }
+    usingComponents: {
+      'wemark': '../../components/wemark/wemark' // 书写第三方组件的相对路径
+    }
   }
   constructor () {
     super(...arguments)
@@ -53,7 +52,7 @@ export default class Index extends Component {
       let data = res.data.data
       //正则表达式处理图片过大的问题
       // let content = data.content.replace(/\<img/gi, '<img style="width:100%;height:auto" ')
-      WxParse.wxParse('article','md',data.content,this.$scope,5)
+      // WxParse.wxParse('article','md',data.content,this.$scope,5)
       this.setState({
         data: data,
         loading: false,
@@ -171,8 +170,9 @@ export default class Index extends Component {
               </View>
               {/* <RichText nodes={content}></RichText>   */}
               <View>{/*  */}
-                  <import src='../../components/wxParse/wxParse.wxml' />
-                  <template is='wxParse' data='{{wxParseData:article.nodes}}' />
+                  {/* <import src='../../components/wxParse/wxParse.wxml' />
+                  <template is='wxParse' data='{{wxParseData:article.nodes}}' /> */}
+                  <wemark md='{{data.content}}' highlight  type="wemark" />
               </View>
             
             </View>{/*  */}
@@ -189,11 +189,7 @@ export default class Index extends Component {
                         </View>
                       <View className='content'>
                         <RichText nodes={item.content.replace(/\<img/gi, '<img style="width:100%;height:auto" ')} ></RichText> 
-                        {/* {
-                          WxParse.wxParse('reply','md',item.content,this.$scope,5)
-                          }
-                          <import src='../../components/wxParse/wxParse.wxml' />
-                          <template is='wxParse' data='{{wxParseData:reply.nodes}}' />     */}
+                        {/* <wemark key={index} md='{{item.content}}' type="wemark" link highlight /> */}
                                     
                       </View>  
               
