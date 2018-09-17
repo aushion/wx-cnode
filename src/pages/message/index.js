@@ -45,10 +45,14 @@ export default class Index extends Component {
     if(!userInfo){
       Taro.showModal({
         title: '该操作需要登录，是否立即登录',
-        success: (confirm) => {
-          if(confirm){
+        success: (res) => {
+          if(res.confirm){
             Taro.navigateTo({
               url: '../login/login'
+            })
+          }else{
+            Taro.reLaunch({
+             url: '../index/index'
             })
           }
           Taro.hideLoading()
@@ -88,6 +92,13 @@ export default class Index extends Component {
     })
   }
 
+  componentDidHide() {
+    this.setState({
+      userInfo: Taro.getStorageSync('userInfo')||null,
+      has_read_messages: [],
+      hasnot_read_messages: []
+    })
+  }
 
   render () {
     const {has_read_messages,hasnot_read_messages} = this.state;
