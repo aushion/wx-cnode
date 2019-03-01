@@ -33,14 +33,15 @@ export default class Index extends Component {
     })
   }
 
-  login = () => {
+  login = (current) => {
     const {accessToken} = this.state;
-    if(accessToken){
+    const a = accessToken?accessToken:current
+    if(a){
       Taro.request(
         {
           url: _Const.serverApi+'/accesstoken',
           data: {
-              accesstoken: accessToken
+              accesstoken: a
           },
           method: 'POST',
           header: {
@@ -59,12 +60,9 @@ export default class Index extends Component {
               loginname: data.loginname,
               id: data.id,
               avatar_url: data.avatar_url,
-              accessToken: accessToken
+              accessToken: a
             }
             Taro.setStorageSync('userInfo',userInfo);
-            // Taro.switchTab({
-            //   url: '../user/index'
-            // })
             Taro.navigateBack({
               delta: 1
             })
@@ -87,10 +85,9 @@ export default class Index extends Component {
   handleQr = () => {
     Taro.scanCode({
       success: (res) => {
-        console.log(res.result)
         this.setState({
           accessToken: res.result
-        },this.login())
+        },this.login(res.result))
       }
     })
   }
@@ -102,7 +99,7 @@ export default class Index extends Component {
 
          <View className="form">
               <View className="token">
-                <Input placeholder='Access Token:' onChange={this.handleChange} />
+                <Input placeholder='Access Token:' onChange={this.handleChange} defaultValue={this.state.accessToken} />
                 
               </View>
               <Button className="btn-login" onClick={this.login}>登录</Button>

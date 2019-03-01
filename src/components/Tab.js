@@ -3,11 +3,10 @@ import {View} from '@tarojs/components'
 import './Tab.styl'
 
 export default class Tab extends Component{
-    constructor () {
-        super(...arguments)
+    constructor (props) {
+        super(props)
         this.state = {
           tabs: this.props.tabs,
-          onTabChange: this.props.onTabChange,
         }
 
     }
@@ -32,12 +31,14 @@ export default class Tab extends Component{
       this.setState({
         tabs: tabs
       })
-      this.state.onTabChange(i)
+      this.props.onTabChange(i)
     }
   render (){
+    const tabs = this.props.tabs;
     return (
         <View className='flex-wrp' style='flex-direction:row;'>
-          {this.state.tabs.map((item,index) => {
+          {tabs.map((item,index) => {
+            console.log(item.active)
             return <View key={item.id} className={item.active?'flex-item active':'flex-item'} onClick={this.handleClick.bind(this,index)}>{item.title}</View>
           })}
         </View>

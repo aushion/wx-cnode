@@ -1,18 +1,66 @@
 .user
     width: 100%;
-    height: 200px;
+    height: 300px;
     background-color: #474546
     text-align: center
     .avatar
         width: 160px
         height: 160px
         border-radius: 50%
-        margin-top: 120px
+        //margin-top: 120px
         background: white
         color: #474546
         font-size: 100px
         line-height: 160px
         border: 1px solid #eee
+    .name
+        color: white    
     .logout
-        width: 90%
-        margin: 20px auto    
+        position: absolute
+        top: 20px
+        right: 40px;
+        color: white
+        cursor: pointer
+        font-size: 32px
+        line-height: 32px
+    .tabs
+        margin-top: 20px
+    .content
+        text-align: left
+        font-size: 32px
+        .swiper-wrap
+            height: 780px 
+            overflow-y: scroll
+            .swiper-item
+                overflow-y: auto
+                .item-wrapper
+                    display: flex
+                    border-bottom: 1px solid #eee 
+                    width: 100%
+                    padding: 20px
+                    overflow: hidden
+                    .avatar
+                        width: 80px
+                        height: 80px 
+                        flex: 0 0 80px
+                    .right
+                        margin-left: 20px
+                        flex: 0 0 auto
+                        display: flex
+                        flex-direction: column
+                        .title
+                            width: 590px
+                            text-overflow:ellipsis;
+                            white-space:nowrap;
+                            overflow:hidden;
+                        .bottom
+                            display: flex
+                            flex-direction: row
+                            justify-content: space-between
+                            .loginname
+                                color: #999
+                                font-size: 28px
+                            .time
+                                font-size: 28px    
+
+               

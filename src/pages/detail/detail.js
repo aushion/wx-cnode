@@ -1,12 +1,17 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View,RichText,Image,Text,Icon,Textarea} from '@tarojs/components'
 import moment from 'moment'
+// import WxParse from '../../components/wxParse/wxParse'
 import _Const from '../../static/_Const'
 import './detail.styl'
 
 export default class Index extends Component {
   config = {
-    navigationBarTitleText: 'Cnode'
+    navigationBarTitleText: '详情',
+    // 定义需要引入的第三方组件
+    usingComponents: {
+      'wemark': '../../components/wemark/wemark' // 书写第三方组件的相对路径
+    }
   }
   constructor () {
     super(...arguments)
@@ -15,7 +20,7 @@ export default class Index extends Component {
       id: this.$router.params.id,
       data: null,
       loading: true,
-      content: null,
+      // content: null,
       replies: [],
       display: false,
       collection: false
@@ -31,12 +36,13 @@ export default class Index extends Component {
       title: '加载中'
     })
     this.getTopicsDeail(this.$router.params.id)
+
   }
   getTopicsDeail = (id) => {
     Taro.request({
       url: _Const.serverApi+'/topic/'+id,   
       data: {
-        mdrender: true
+        mdrender: false
       },
       header: {
         'content-type': 'application/json'
@@ -45,13 +51,14 @@ export default class Index extends Component {
     .then(res => {
       let data = res.data.data
       //正则表达式处理图片过大的问题
-      let content = data.content.replace(/\<img/gi, '<img style="width:100%;height:auto" ')
+      // let content = data.content.replace(/\<img/gi, '<img style="width:100%;height:auto" ')
+      // WxParse.wxParse('article','md',data.content,this.$scope,5)
       this.setState({
         data: data,
         loading: false,
         visit_count: data.visit_count,
         create_at: moment(data.create_at).fromNow(),
-        content: content,
+        // content: data.content,
         replies: data.replies,
         collection: data.is_collect
       })
@@ -62,16 +69,18 @@ export default class Index extends Component {
     this.setState({
       data: null,
       loading: true,
-      content: null,
+      // content: null,
       replies: [],
       sendMsg: ''
     })
    }
 
-  componentDidShow () { }
+  componentDidShow () {
+    this.hideModal()
+   }
 
   componentDidHide () {
-    
+    this.hideModal()
    }
   handleInput = (e) => {
     this.setState({
@@ -135,10 +144,17 @@ export default class Index extends Component {
     })
   }
 
+  wxParseTagATap = (e) => {
+    console.log(e)
+  }
+
+
   render () {
-    const { data,replies,content,create_at,visit_count,display,collection} = this.state
+    const { data,replies,create_at,visit_count,display,collection} = this.state
+    
     return (
       <View className='index'>
+
         {!this.state.loading?
         <View className="main">
 
@@ -152,8 +168,14 @@ export default class Index extends Component {
                 <Image src={data.author.avatar_url} className="avatar"></Image>
                 <Text className="name">{data.author.loginname}</Text>
               </View>
-              <RichText nodes={content}></RichText>  
-            </View>
+              {/* <RichText nodes={content}></RichText>   */}
+              <View>{/*  */}
+                  {/* <import src='../../components/wxParse/wxParse.wxml' />
+                  <template is='wxParse' data='{{wxParseData:article.nodes}}' /> */}
+                  <wemark md='{{data.content}}' highlight  type="wemark" />
+              </View>
+            
+            </View>{/*  */}
           
           <View className="comments">
             <View className="tag">{replies.length}回复</View>
@@ -166,8 +188,9 @@ export default class Index extends Component {
                         </Text>
                         </View>
                       <View className='content'>
-                        <RichText nodes={item.content.replace(/\<img/gi, '<img style="width:100%;height:auto" ')} ></RichText>          
-                        
+                        <RichText nodes={item.content.replace(/\<img/gi, '<img style="width:100%;height:auto" ')} ></RichText> 
+                        {/* <wemark key={index} md='{{item.content}}' type="wemark" link highlight /> */}
+                                    
                       </View>  
               
                   </View>)

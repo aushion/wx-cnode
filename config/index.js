@@ -47,6 +47,15 @@ const config = {
   },
   defineConstants: {
   },
+  copy: {
+    patterns: [
+      // { from: 'src/components/wxParse/wxParse.wxss', to: 'dist/components/wxParse/wxParse.wxss'},
+      // { from: 'src/components/wxParse/', to: 'dist/components/wxParse/'},
+      { from: 'src/components/wemark/', to: 'dist/components/wemark/'},
+      // { from: 'src/components/wemark/wemark.wxml', to: 'dist/components/wemark/wemark.wxml'}
+    ],
+    options: {}
+  },
   weapp: {
 
   },
